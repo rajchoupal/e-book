@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .book-details {
+            text-align: center;
+        }
+        .book-cover {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .author,
+        .genre,
+        .pages {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="book-details">
+        <img src="../canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg" alt="Book Cover" class="book-cover">
+        <div class="author">Author: John Doe</div>
+        <div class="genre">Genre: Fiction</div>
+        <div class="pages">Number of Pages: 150</div>
+    </div>
+    <div class="navigation">
+        <button class="btn" id="prevBtn">Previous</button>
+        <button class="btn" id="nextBtn">Next</button>
+    </div>
+</div>
+
+<script>
+    // Dummy book data
+    const books = [
+        { cover: "canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg", author: "king saferd", genre: "Fiction", pages: 150 },
+        { cover: "book-covers-big-2019101610.jpg", author: "Jane Smith", genre: "Mystery", pages: 220 },
+        { cover: "download.jpg", author: "Alice Johnson", genre: "Thriller", pages: 180 }
+    ];
+
+    let currentIndex = 0;
+
+    const updateBookDetails = () => {
+        const book = books[currentIndex];
+        document.querySelector('.book-cover').src = book.cover;
+        document.querySelector('.author').textContent = `Author: ${book.author}`;
+        document.querySelector('.genre').textContent = `Genre: ${book.genre}`;
+        document.querySelector('.pages').textContent = `Number of Pages: ${book.pages}`;
+    };
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % books.length;
+        updateBookDetails();
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + books.length) % books.length;
+        updateBookDetails();
+    });
+
+    // Initialize with the first book
+    updateBookDetails();
+</script>
+
+</body>
+</html>
